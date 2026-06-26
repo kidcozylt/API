@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
         }
 
         const token = crypto.randomBytes(32).toString('hex');
-        const expiry = new Date(Date.now() + 1000 * 60 * 60); // 1 heure
+        const expiry = new Date(Date.now() + 1000 * 60 * 60); 
 
         await prisma.user.update({
             where: { email },
@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
             `Ton token de réinitialisation : ${token}\n\nUtilise-le dans POST /reset-password avec ce token et ton nouveau mot de passe.\n\nExpire dans 1 heure.`
         );
 
-        return res.json({ message: 'Email envoyé', token }); // token aussi dans la réponse pour tester avec Postman
+        return res.json({ message: 'Email envoyé', token });
 
     } catch (error) {
         console.error('Erreur POST /forgot-password :', error);
