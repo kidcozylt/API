@@ -20,8 +20,8 @@ app.use('/', route)
 
 const prisma = require('./lib/generated/prisma')
 
-const server = app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000')
+const server = app.listen(5000, () => {
+  console.log('Server is running on http://localhost:5000')
 })
 
 // Arrêt propre : on ferme la connexion Prisma avant de quitter.
