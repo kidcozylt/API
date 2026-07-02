@@ -1,5 +1,6 @@
 const prisma = require('../lib/prisma');
 const argon2 = require('argon2');
+const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
     const { email, password } = req.body;
@@ -19,7 +20,17 @@ module.exports = async (req, res) => {
             return res.status(401).json({ error: 'Mot de passe incorrect' });
         }
 
-        return res.json({ message: 'Connexion réussie', user });
+        const token = jwt.sign(
+            { id: user.id, email: user.email },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        return res.json({
+            message: 'Connexion réussie',
+            user: { id: user.id, name: user.name, email: user.email },
+            jwt: token
+        });
 
     } catch (error) {
         console.error('Erreur POST /login :', error);

@@ -1,5 +1,4 @@
-module.exports = async (req, res, next) => {
-    module.exports = (req, res, next) => {
+module.exports = (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -11,5 +10,4 @@ module.exports = async (req, res, next) => {
     }
 
     next();
-};
 };

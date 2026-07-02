@@ -1,21 +1,16 @@
+require('dotenv').config()
 const express = require('express')
+const cors = require('cors')
 const route = require('./routes/index')
 const app = express()
-
-// GET  Voir tout les avis 
-// GET  Voir un avis 
-// POST Ajouter un avis
-// PUT  Autoriser un avis 
-// DELETE Supprimer un avis
-// POST Register 
-// POST Login
-// POST Changer de mot de passe
-// POST Oublier mot de passe
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}))
 
 app.use(express.json())
-
 app.use(express.urlencoded({ extended: true }))
-
 app.use('/', route)
 
 const prisma = require('./lib/generated/prisma')
@@ -24,9 +19,8 @@ const server = app.listen(5000, () => {
   console.log('Server is running on http://localhost:5000')
 })
 
-// Arrêt propre : on ferme la connexion Prisma avant de quitter.
 const shutdown = async () => {
-  await prisma.$disconnect()          // ferme la connexion à la base
+  await prisma.$disconnect()
   server.close(() => process.exit(0))
 }
 
