@@ -3,39 +3,44 @@ import { useState } from 'react';
 import Login from '@/service/login';
 
 export default function LoginPages() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
 
-  const GetEmail = (email) => {
-    setEmail(email);
-  };
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
 
-  const GetPassword = (password) => {
-    setPassword(password);
-  };
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
 
-  const onSubmit = (e) => handleSubmit(e);
-
-  async function handleSubmit(e) {
+    const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+    console.log("handleSubmit déclenché");
+
+    const data = { email, password };
 
     try {
-      const { response, result } = await Login({ email, password });
+      console.log("avant appel Login");
+        const { response, result } = await Login(data);
+               console.log("réponse reçue :", response.ok, result);
 
-      if (response.ok) {
-        localStorage.setItem('user', JSON.stringify(result.user));
-        document.location.href = "/";
-      } else {
-        console.log("Erreur lors de la connexion", result.error);
-        setError(result.error || "Identifiants incorrects");
-      }
+        if (!response.ok || !result.jwt) {
+            console.log("Erreur lors de la connexion");
+            setError(result.error || "Identifiants incorrects");
+            return;
+        }
+
+        console.log("Connexion réussie");
+        document.cookie = `token=${result.jwt}; path=/`;
+        document.location.href = '/avis';
+
     } catch (error) {
-      console.log("Erreur réseau", error);
-      setError("Erreur réseau, veuillez réessayer");
+        console.log(error);
+        setError("Erreur réseau, veuillez réessayer");
     }
-  }
+    };
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -55,7 +60,7 @@ export default function LoginPages() {
           </p>
         )}
 
-        <form onSubmit={onSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm/6 font-medium text-gray-100">
               Email address
@@ -68,7 +73,7 @@ export default function LoginPages() {
                 required
                 autoComplete="email"
                 value={email}
-                onChange={(e) => GetEmail(e.target.value)}
+                onChange={handleEmailChange}
                 className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
               />
             </div>
@@ -93,7 +98,7 @@ export default function LoginPages() {
                 required
                 autoComplete="current-password"
                 value={password}
-                onChange={(e) => GetPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
               />
             </div>
@@ -111,7 +116,7 @@ export default function LoginPages() {
 
         <p className="mt-10 text-center text-sm/6 text-gray-400">
           Not a member?{' '}
-          <a href="#" className="font-semibold text-indigo-400 hover:text-indigo-300">
+          <a href="/register" className="font-semibold text-indigo-400 hover:text-indigo-300">
             Start a 14 day free trial
           </a>
         </p>

@@ -8,6 +8,11 @@ const Login = async (data) => {
             }
         })
         const result = await response.json()
+
+        if (response.ok) {
+            console.log("Connexion réussie", result)
+        }
+
         return { response, result }
     } catch (error) {
         console.error(error)
