@@ -1,69 +1,111 @@
-const people = [
+import { StarIcon } from '@heroicons/react/20/solid'
+
+const reviews = [
   {
-    name: 'Leslie Alexander',
-    role: 'Co-Founder / CEO',
+    name: 'Léa Martin',
+    school: 'ESSEC Business School',
+    rating: 5,
+    date: 'Il y a 2 jours',
     imageUrl:
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    text: 'Un corps professoral très investi et un vrai réseau alumni. Le campus est excellent et les nombreux partenariats à l’international m’ont permis de faire un double diplôme.',
   },
   {
-    name: 'Michael Foster',
-    role: 'Co-Founder / CTO',
+    name: 'Hugo Bernard',
+    school: 'Polytech Lyon',
+    rating: 4,
+    date: 'Il y a 5 jours',
     imageUrl:
       'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    text: 'Formation exigeante mais qui paie : beaucoup de projets concrets en lien avec les entreprises locales. Quelques amphis surchargés en première année.',
   },
   {
-    name: 'Dries Vincent',
-    role: 'Business Relations',
+    name: 'Camille Dubois',
+    school: 'Université Paris-Dauphine',
+    rating: 5,
+    date: 'Il y a 1 semaine',
     imageUrl:
       'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    text: 'Encadrement solide en licence d’économie, professeurs disponibles, et une insertion professionnelle qui tient ses promesses. Je recommande vivement.',
   },
   {
-    name: 'Lindsay Walton',
-    role: 'Front-end Developer',
+    name: 'Nathan Petit',
+    school: 'IÉSEG School of Management',
+    rating: 3,
+    date: 'Il y a 2 semaines',
     imageUrl:
       'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    text: 'Bon niveau académique mais les frais de scolarité sont élevés par rapport aux services proposés. Le campus de Lille reste agréable et bien situé.',
   },
   {
-    name: 'Courtney Henry',
-    role: 'Designer',
+    name: 'Manon Girard',
+    school: 'INSA Toulouse',
+    rating: 5,
+    date: 'Il y a 3 semaines',
     imageUrl:
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    text: 'Cursus intégré très cohérent, ambiance conviviale entre promos et une vie associative riche. Les stages sont bien accompagnés par l’école.',
   },
   {
-    name: 'Tom Cook',
-    role: 'Director of Product',
+    name: 'Thomas Roux',
+    school: 'HEC Paris',
+    rating: 4,
+    date: 'Il y a 1 mois',
     imageUrl:
       'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    text: 'Réseau et prestige indéniables, opportunités de carrière excellentes. La pression et la compétition entre étudiants peuvent être intenses.',
   },
 ]
 
+function StarRating({ rating }) {
+  return (
+    <div className="flex items-center gap-0.5" aria-label={`Note : ${rating} sur 5`}>
+      {[0, 1, 2, 3, 4].map((i) => (
+        <StarIcon
+          key={i}
+          aria-hidden="true"
+          className={`size-4 ${i < rating ? 'text-amber-400' : 'text-slate-200'}`}
+        />
+      ))}
+    </div>
+  )
+}
+
 export default function Avis() {
   return (
-    <div className="bg-gray-900 py-24 sm:py-32">
+    <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-pretty text-white sm:text-4xl">
-            Meet our leadership
+          <h2 className="text-3xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-4xl">
+            Les avis de la communauté
           </h2>
-          <p className="mt-6 text-lg/8 text-gray-400">
-            We’re a dynamic group of individuals who are passionate about what we do and dedicated to delivering the
-            best results for our clients.
+          <p className="mt-6 text-lg/8 text-slate-500">
+            Des avis vérifiés, laissés par des étudiants et anciens élèves, pour t'aider à choisir ton école en
+            toute confiance.
           </p>
         </div>
-        <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
-          {people.map((person) => (
-            <li key={person.name}>
-              <div className="flex items-center gap-x-6">
+        <ul role="list" className="grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:col-span-2">
+          {reviews.map((review) => (
+            <li
+              key={review.name}
+              className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm ring-1 ring-slate-100"
+            >
+              <div className="flex items-center gap-x-4">
                 <img
                   alt=""
-                  src={person.imageUrl}
-                  className="size-16 rounded-full outline-1 -outline-offset-1 outline-white/10"
+                  src={review.imageUrl}
+                  className="size-12 rounded-full outline-1 -outline-offset-1 outline-slate-200"
                 />
                 <div>
-                  <h3 className="text-base/7 font-semibold tracking-tight text-white">{person.name}</h3>
-                  <p className="text-sm/6 font-semibold text-indigo-400">{person.role}</p>
+                  <h3 className="text-base/6 font-semibold text-slate-900">{review.name}</h3>
+                  <p className="text-sm/6 font-semibold text-teal-700">{review.school}</p>
                 </div>
               </div>
+              <div className="mt-4 flex items-center justify-between">
+                <StarRating rating={review.rating} />
+                <span className="text-xs text-slate-400">{review.date}</span>
+              </div>
+              <p className="mt-4 text-sm/6 text-slate-600">{review.text}</p>
             </li>
           ))}
         </ul>
