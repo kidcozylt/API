@@ -28,7 +28,6 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon, PencilSquareIcon, StarIcon } from '@heroicons/react/20/solid'
 
-// Catégories d'écoles proposées dans le méga-menu
 const categories = [
   {
     name: 'Écoles de commerce',
@@ -67,7 +66,6 @@ const quickActions = [
   { name: 'Déposer un avis', href: '#/avis/nouveau', icon: PencilSquareIcon },
 ]
 
-// Lit un cookie côté client par son nom
 function getCookie(name) {
   if (typeof document === 'undefined') return null
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))

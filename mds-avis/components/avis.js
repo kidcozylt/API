@@ -19,42 +19,7 @@ const reviews = [
       'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     text: 'Formation exigeante mais qui paie : beaucoup de projets concrets en lien avec les entreprises locales. Quelques amphis surchargés en première année.',
   },
-  {
-    name: 'Camille Dubois',
-    school: 'Université Paris-Dauphine',
-    rating: 5,
-    date: 'Il y a 1 semaine',
-    imageUrl:
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    text: 'Encadrement solide en licence d’économie, professeurs disponibles, et une insertion professionnelle qui tient ses promesses. Je recommande vivement.',
-  },
-  {
-    name: 'Nathan Petit',
-    school: 'IÉSEG School of Management',
-    rating: 3,
-    date: 'Il y a 2 semaines',
-    imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    text: 'Bon niveau académique mais les frais de scolarité sont élevés par rapport aux services proposés. Le campus de Lille reste agréable et bien situé.',
-  },
-  {
-    name: 'Manon Girard',
-    school: 'INSA Toulouse',
-    rating: 5,
-    date: 'Il y a 3 semaines',
-    imageUrl:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    text: 'Cursus intégré très cohérent, ambiance conviviale entre promos et une vie associative riche. Les stages sont bien accompagnés par l’école.',
-  },
-  {
-    name: 'Thomas Roux',
-    school: 'HEC Paris',
-    rating: 4,
-    date: 'Il y a 1 mois',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    text: 'Réseau et prestige indéniables, opportunités de carrière excellentes. La pression et la compétition entre étudiants peuvent être intenses.',
-  },
+  
 ]
 
 function StarRating({ rating }) {

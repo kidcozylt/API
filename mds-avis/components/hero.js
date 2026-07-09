@@ -1,10 +1,10 @@
 export default function Hero() {
   return (
     <div className="bg-white">
-      <div className="relative isolate px-8 lg:px-8">
+      <div className="relative isolate px-6 lg:px-8">
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          className="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
         >
           <div
             style={{
@@ -14,7 +14,7 @@ export default function Hero() {
             className="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-teal-200 to-amber-200 opacity-40 sm:left-[calc(50%-30rem)] sm:w-288.75"
           />
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+        <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:py-28">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm/6 text-slate-600 ring-1 ring-slate-200 hover:ring-slate-300">
               Plus de 15 000 avis vérifiés déposés par des étudiants.{' '}
@@ -47,7 +47,7 @@ export default function Hero() {
         </div>
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          className="pointer-events-none absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
         >
           <div
             style={{
